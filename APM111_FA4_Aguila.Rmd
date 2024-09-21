@@ -1,0 +1,295 @@
+---
+title: "Formative Assessment 4"
+author: "Vera Aguila"
+date: "2024-09-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br><br>
+
+The data in Table 5.1 samples of size 50 from a normal distribution, a skewed-right distribution, a skewed-left distribution, and a uniform distribution.
+
+<br><br>
+
+The normal data are female height measurements, the skewed-right data are age at marriage for females, the skewed-left data are obituary data that give the age at death for females, and the uniform data are the amount of cola put into a 12 ounce container by a soft drinks machine.
+
+## Problem 1 
+Find the following:
+<br>
+
+```{r }
+library(moments)
+
+normal <- c(67, 70, 63, 65, 68, 60, 70, 64, 69, 61, 66, 65, 71, 62, 66, 68, 64, 67, 62, 66, 65, 63, 66, 65, 63, 69, 62, 67, 59, 66, 65, 63, 65, 60, 67, 64, 68, 61, 69, 65, 62, 67, 70, 64, 63, 68, 64, 65, 61, 66)
+
+skewed_right <- c(31, 43, 30, 30, 38, 26, 29, 55, 46, 26, 29, 57, 34, 34, 36, 40, 28, 26, 66, 63, 30, 33, 24, 35, 34, 28, 22, 25, 31, 26, 28, 23, 19, 34, 26, 35, 41, 40, 29, 85, 34, 38, 75, 33, 35, 27, 24, 29, 24, 40)
+
+skewed_left <- c(102, 55, 70, 95, 73, 79, 60, 73, 89, 85, 72, 92, 76, 93, 76, 97, 10, 70, 85, 25, 83, 58, 10, 92, 82, 77, 81, 77, 65, 44, 93, 72, 82, 58, 63, 71, 90, 71, 35, 79, 98, 73, 84, 90, 93, 66, 80, 75, 104, 87)
+
+uniform <- c(12.1, 12.1, 12.4, 12.1, 12.1, 12.2, 12.2, 12.2, 11.9, 12.2, 12.3, 12.3, 11.7, 12.3, 12.3, 12.4, 12.4, 12.1, 12.4, 12.4, 12.5, 11.8, 12.5, 12.5, 12.5, 12, 12, 12, 11.9, 12, 11.9, 12.2, 11.9, 11.9, 11.9, 11.8, 11.8, 11.8, 12.5, 11.8, 11.7, 11.7, 11.7, 12.3, 11.7, 11.6, 11.6, 12, 11.6, 11.6)
+```
+
+(a) first
+
+```{r, echo=FALSE}
+firstN <- sum(normal)/length(normal)
+firstSR <- sum(skewed_right)/length(skewed_right)
+firstSL <- sum(skewed_left)/length(skewed_left)
+firstU <- sum(uniform)/length(uniform)
+
+cat("Normal Distribution First Moments: ")
+print(firstN)
+cat("Skewed-right Distribution First Moments: ")
+print(firstSR)
+cat("Skewed-left Distribution First Moments: ")
+print(firstSL)
+cat("Uniform Distribution First Moments: ")
+print(firstU)
+``` 
+
+
+(b) second
+```{r, echo=FALSE}
+newN <- normal^2
+newSR <- skewed_right^2
+newSL <- skewed_left^2
+newU <- uniform^2
+
+secondN <- sum(newN)/length(newN)
+secondSR <- sum(newSR)/length(newSR)
+secondSL <- sum(newSL)/length(newSL)
+secondU <- sum(newU)/length(newU)
+
+cat("Normal Distribution Second Moments: ")
+print(secondN)
+cat("Skewed-right Distribution Second Moments: ")
+print(secondSR)
+cat("Skewed-left Distribution Second Moments: ")
+print(secondSL)
+cat("Uniform Distribution Second Moments: ")
+print(secondU)
+``` 
+<br>
+
+(c) third
+```{r, echo=FALSE}
+newN2 <- normal^3
+newSR2 <- skewed_right^3
+newSL2 <- skewed_left^3
+newU2 <- uniform^3
+
+thirdN <- sum(newN2)/length(normal)
+thirdSR <- sum(newSR2)/length(skewed_right)
+thirdSL <- sum(newSL2)/length(skewed_left)
+thirdU <- sum(newU2)/length(uniform)
+
+cat("Normal Distribution Third Moments: ")
+print(thirdN)
+cat("Skewed-right Distribution Third Moments: ")
+print(thirdSR)
+cat("Skewed-left Distribution Third Moments: ")
+print(thirdSL)
+cat("Uniform Distribution Third Moments: ")
+print(thirdU)
+``` 
+<br>
+
+(d) fourth moments for each of the sets of data (normal, skewed-right, skewed-left, uniform)
+```{r, echo=FALSE}
+newN3 <- normal^4
+newSR3 <- skewed_right^4
+newSL3 <- skewed_left^4
+newU3 <- uniform^4
+
+fourthN <- sum(newN3)/length(normal)
+fourthSR <- sum(newSR3)/length(skewed_right)
+fourthSL <- sum(newSL3)/length(skewed_left)
+fourthU <- sum(newU3)/length(uniform)
+
+cat("Normal Distribution Fourth Moments: ")
+print(fourthN)
+cat("Skewed-right Distribution Fourth Moments: ")
+print(fourthSR)
+cat("Skewed-left Distribution Fourth Moments:")
+print(fourthSL)
+cat("Uniform Distribution Fourth Moments:")
+print(fourthU)
+``` 
+
+<br><br>
+
+## Problem 2
+Find the following:
+<br>
+
+(a) first
+```{r, echo=FALSE}
+newNm <- normal-mean(normal)
+newSRm <- skewed_right-mean(skewed_right)
+newSLm <- skewed_left-mean(skewed_left)
+newUm <- uniform-mean(uniform)
+
+firstNm <- 0
+firstSRm <- sum(newSRm)/length(skewed_right)
+firstSLm <- sum(newSLm)/length(skewed_left)
+firstUm <- sum(newUm)/length(uniform)
+
+cat("Normal Distribution First Moments about the mean: ")
+print(firstNm)
+cat("Skewed-right Distribution First Moments about the mean: ")
+print(firstSRm)
+cat("Skewed-left Distribution First Moments about the mean: ")
+print(firstSLm)
+cat("Uniform Distribution First Moments about the mean: ")
+print(firstUm)
+
+``` 
+<br>
+
+(b) second
+```{r, echo=FALSE}
+secondNm <- sum((normal-firstN)^2)/length(normal)
+secondSRm <- sum((skewed_right-firstSR)^2)/length(skewed_right)
+secondSLm <- sum((skewed_left-firstSL)^2)/length(skewed_left)
+secondUm <- sum((uniform-firstU)^2)/length(uniform)
+
+cat("Normal Distribution Second Moments about the mean: ")
+print(secondNm)
+cat("Skewed-right Distribution Second Moments about the mean: ")
+print(secondSRm)
+cat("Skewed-left Distribution Second Moments about the mean: ")
+print(secondSLm)
+cat("Uniform Distribution Second Moments about the mean:\n")
+print(secondUm)
+
+``` 
+<br>
+
+(c) third
+
+```{r, echo=FALSE}
+thirdNm3 <- sum((normal-firstN)^3)/length(normal)
+thirdSRm3 <- sum((skewed_right-firstSR)^3)/length(skewed_right)
+thirdSLm3 <- sum((skewed_left-firstSL)^3)/length(skewed_left)
+thirdUm3 <- sum((uniform-firstU)^3)/length(uniform)
+
+cat("Normal Distribution Third Moments about the mean: ")
+print(thirdNm3)
+cat("Skewed-right Distribution Third Moments about the mean: ")
+print(thirdSRm3)
+cat("Skewed-left Distribution Third Moments about the mean: ")
+print(thirdSLm3)
+cat("Uniform Distribution Third Moments about the mean: ")
+print(thirdUm3)
+``` 
+
+<br>
+
+(d) fourth moments about the mean for each of the sets of data (normal, skewed-right, skewed-left, uniform)
+
+```{r, echo=FALSE}
+fourthNm4 <- sum((normal-firstN)^4)/length(newN)
+fourthSRm4 <- sum((skewed_right-firstSR)^4)/length(newSR)
+fourthSLm4 <- sum((skewed_left-firstSL)^4)/length(newSL)
+fourthUm4 <- sum((uniform-firstU)^4)/length(newU)
+
+cat("Normal Distribution Fourth Moments about the mean: ")
+print(fourthNm4)
+cat("Skewed-right Distribution Fourth Moments about the mean: ")
+print(fourthSRm4)
+cat("Skewed-left Distribution Fourth Moments about the mean: ")
+print(fourthSLm4)
+cat("Uniform Distribution Fourth Moments about the mean: ")
+print(fourthUm4)
+``` 
+
+
+<br><br>
+
+## Problem 3
+Find the following:
+<br>
+
+(a) first
+
+```{r, echo=FALSE}
+firstN2 <- sum(normal-75)/length(normal)
+
+cat("Normal Distribution First Moments about the number 75:")
+print(firstN2)
+``` 
+<br>
+
+(b) second
+
+```{r, echo=FALSE}
+secondN2 <- sum((normal-75)^2)/length(normal)
+
+cat("Normal Distribution Second Moments about the number 75:")
+print(secondN2)
+``` 
+<br>
+
+(c) third
+
+```{r, echo=FALSE}
+thirdN2 <- sum((normal-75)^3)/length(normal)
+
+cat("Normal Distribution Third Moments about the number 75:")
+print(thirdN2)
+``` 
+<br>
+
+(d) fourth moments about the number 75 for the set of female height measurements
+```{r, echo=FALSE}
+fourthN2 <- sum((normal-75)^4)/length(normal)
+
+cat("Normal Distribution Fourth Moments about the number 75:")
+print(fourthN2)
+``` 
+
+<br><br>
+
+## Problem 4
+Using the results of items 2 and 3 for the set of female height measurements, verify the relations between the moments
+<br>
+```{r}
+m_prime1 = firstN2
+m_prime2 = secondN2
+m_prime3 = thirdN2
+m_prime4 = fourthN2
+``` 
+<br>
+
+(a) $m_2 = m'_2 - m'^2_1$
+```{r}
+m2 <- m_prime2 - ((m_prime1)^2)
+
+paste("m2 = ",m2)
+``` 
+
+<br>
+
+(b) $m_3 = m'_3 - 3m'_1m'_2 +2m'^3_1$
+```{r}
+m3 <- m_prime3 - (3*m_prime1*m_prime2) + (2*((m_prime1)^3))
+
+paste("m3 = ",m3)
+``` 
+<br>
+
+(c) $m_4 = m'_4 - 4m'_1m'_3 + 6m'^2_1m'_2 - 3m'^4_1$
+```{r}
+m4 <- m_prime4 - (4*m_prime1*m_prime3) + (6*((m_prime1)^2)*m_prime2) - (3*((m_prime1)^4))
+
+paste("m4 = ",m4)
+``` 
+
+<br><br>
+
+
+
